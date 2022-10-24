@@ -17,6 +17,9 @@ html, body{
     margin: 0 auto;
     text-align: center;
     user-select: none;
+    .win-text {
+        display: none;
+    }
 }
 
 .puzzle {
@@ -40,7 +43,7 @@ html, body{
    background-color: #887f73;
    border: $blackBorder;
    cursor: pointer;
-   transition: transform 0.2s;
+   transition: transform 0.2s, filter 0.5s;
 }
 
 .block-puzzle span {
@@ -50,4 +53,18 @@ html, body{
 
 .panel {
     margin-bottom: 32px;
+    #shuffle {
+        background-color: #519595;
+        border: none;
+        border-radius: 5px;
+        color: rgb(237, 222, 222);
+        padding: 10px;
+    }
+}
+
+.won {
+    display: block;
+    .block-puzzle {
+        filter: brightness(200%);
+    }
 }

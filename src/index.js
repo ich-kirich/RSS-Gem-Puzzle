@@ -1,9 +1,7 @@
 import './styles/normalize.css';
 import './styles/index.scss';
-import './scripts/block-position-and-shuffle.js';
-import './scripts/move-block.js';
-import { createPosition } from './scripts/block-position.js';
-import { shuffle } from './scripts/shuffle.js';
+import './scripts/index.js';
+import { createPosition } from './scripts/index.js';
 document.body.innerHTML = `
     <main>
         <div class="back">
@@ -22,9 +20,9 @@ document.body.innerHTML = `
                 <div class="block-puzzle" data-matrix-id="9"><span>9</span></div>
             </div>
             <div class="sizes"></div>
+            <h2 class="win-text">Вы выиграли!</h2>
         </div>
     </main>
 `;
 
 createPosition();
-shuffle();
