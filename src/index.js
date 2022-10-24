@@ -2,6 +2,7 @@ import './styles/normalize.css';
 import './styles/index.scss';
 import './scripts/index.js';
 import './scripts/time.js';
+import './music/1.mp3'
 import { createPosition } from './scripts/index.js';
 document.body.innerHTML = `
     <main>

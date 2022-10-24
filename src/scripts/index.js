@@ -1,5 +1,7 @@
 import { StartStop, ClearСlock } from './time.js';
 let isEnable = false
+var audio = new Audio();
+audio.src = './src/music/1.mp3';
 export function createPosition(){
     const puzzle = document.querySelector('.puzzle')
     const blocks = Array.from(document.querySelectorAll('.block-puzzle'))
@@ -12,8 +14,11 @@ export function createPosition(){
     setPositionItems(matrix);
 
     document.getElementById('shuffle').addEventListener('click', () =>{
+        let moves = document.querySelector('.moves')
+        moves.innerHTML = 0
+        ClearСlock()
         isEnable = true
-        StartStop();
+        StartStop()
         let shuffledArray = shuffleArray(matrix.flat())
         matrix = getMatrix(shuffledArray, countBlocks)
         setPositionItems(matrix)
@@ -30,6 +35,7 @@ export function createPosition(){
             const blankCoords = findCoordinatesByNumber(countBlocks, matrix)
             const isValid = isValidForSwap(blockCoordinates, blankCoords)
             if(isValid){
+                audio.play()
                 swap(blankCoords, blockCoordinates, matrix, countBlocks)
                 setPositionItems(matrix)
             }
@@ -108,6 +114,7 @@ function swap(coords1, coords2, matrix, countBlocks){
     let moves = document.querySelector('.moves')
     let numMoves = Number(moves.textContent)
     moves.innerHTML = numMoves + 1
+
 }
 
 function isWon(matrix, countBlocks){
@@ -130,13 +137,13 @@ function addWonclass(){
         winText.classList.add(wonClass)
         winText.classList.remove('win-text')
         isEnable = false
-        ClearСlock()
         setTimeout(() => {
             puzzle.classList.remove(wonClass)
             winText.classList.remove(wonClass)
             winText.classList.add('win-text')
             let moves = document.querySelector('.moves')
             moves.innerHTML = 0
+            ClearСlock()
         }, 1000)
     }, 300)
 }

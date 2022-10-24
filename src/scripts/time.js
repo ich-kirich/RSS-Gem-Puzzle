@@ -84,6 +84,9 @@ function StartTime() {
     readout = dh + ':' + dm + ':' + ds;
     let time = document.querySelector('.time')
     time.innerHTML = readout
+    let winText = document.querySelector('.win-text')
+    let moves = document.querySelector('.moves')
+    winText.innerHTML = `Hooray! You solved the puzzle in ${readout} and ${moves.textContent} moves!`
     clocktimer = setTimeout(StartTime, 1);
 }
 
