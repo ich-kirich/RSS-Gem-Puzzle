@@ -1,0 +1,41 @@
+{
+  "name": "ich-kirich-jsfe2022q3",
+  "version": "1.0.0",
+  "description": "Private repository for @ich-kirich",
+  "main": "index.js",
+  "scripts": {
+    "start": "set NODE_ENV=development&&webpack serve --open",
+    "watch": "webpack --watch",
+    "dev": "set NODE_ENV=development&&webpack",
+    "build": "set NODE_ENV=production&&webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/ich-kirich-JSFE2022Q3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/ich-kirich-JSFE2022Q3/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/ich-kirich-JSFE2022Q3#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss": "^8.4.18",
+    "postcss-import": "^15.0.0",
+    "postcss-loader": "^7.0.1",
+    "postcss-preset-env": "^7.8.2",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
