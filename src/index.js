@@ -1,12 +1,19 @@
 import './styles/normalize.css';
 import './styles/index.scss';
 import './scripts/index.js';
+import './scripts/time.js';
 import { createPosition } from './scripts/index.js';
 document.body.innerHTML = `
     <main>
         <div class="back">
             <div class="panel">
-                <button id="shuffle">Shuffle and start</button>
+                <div class="buttons">
+                    <button id="shuffle">Shuffle and start</button>
+                </div>
+                <div class="info">
+                    <p>Moves: <span class="moves">0</span></p>
+                    <p>Time: <span class="time">0:00</span></p>
+                </div>
             </div>
             <div class="puzzle">
                 <div class="block-puzzle" data-matrix-id="1"><span>1</span></div>

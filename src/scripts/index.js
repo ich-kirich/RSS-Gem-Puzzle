@@ -1,4 +1,5 @@
-let isEnable = true
+import { StartStop, ClearСlock } from './time.js';
+let isEnable = false
 export function createPosition(){
     const puzzle = document.querySelector('.puzzle')
     const blocks = Array.from(document.querySelectorAll('.block-puzzle'))
@@ -11,6 +12,8 @@ export function createPosition(){
     setPositionItems(matrix);
 
     document.getElementById('shuffle').addEventListener('click', () =>{
+        isEnable = true
+        StartStop();
         let shuffledArray = shuffleArray(matrix.flat())
         matrix = getMatrix(shuffledArray, countBlocks)
         setPositionItems(matrix)
@@ -102,6 +105,9 @@ function swap(coords1, coords2, matrix, countBlocks){
     if(isWon(matrix, countBlocks)){
         addWonclass();
     }
+    let moves = document.querySelector('.moves')
+    let numMoves = Number(moves.textContent)
+    moves.innerHTML = numMoves + 1
 }
 
 function isWon(matrix, countBlocks){
@@ -124,11 +130,13 @@ function addWonclass(){
         winText.classList.add(wonClass)
         winText.classList.remove('win-text')
         isEnable = false
+        ClearСlock()
         setTimeout(() => {
             puzzle.classList.remove(wonClass)
             winText.classList.remove(wonClass)
             winText.classList.add('win-text')
-            isEnable = true
+            let moves = document.querySelector('.moves')
+            moves.innerHTML = 0
         }, 1000)
     }, 300)
 }
