@@ -2,8 +2,10 @@ import './styles/normalize.css';
 import './styles/index.scss';
 import './scripts/index.js';
 import './scripts/time.js';
-import './music/1.mp3'
+import './music/1.mp3';
+import './scripts/sizes.js';
 import { createPosition } from './scripts/index.js';
+import { chooseSize } from './scripts/sizes.js';
 document.body.innerHTML = `
     <main>
         <div class="back">
@@ -27,10 +29,18 @@ document.body.innerHTML = `
                 <div class="block-puzzle" data-matrix-id="8"><span>8</span></div>
                 <div class="block-puzzle" data-matrix-id="9"><span>9</span></div>
             </div>
-            <div class="sizes"></div>
+            <div class="sizes">
+                <p>Other sizes:</p>
+                <div class="three">3x3</div>
+                <div class="four">4x4</div>
+                <div class="five">5x5</div>
+                <div class="six">6x6</div>
+                <div class="seven">7x7</div>
+                <div class="eight">8x8</div>
+            </div>
             <h2 class="win-text">Вы выиграли!</h2>
         </div>
     </main>
 `;
-
+chooseSize();
 createPosition();

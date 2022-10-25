@@ -74,3 +74,17 @@ html, body{
         filter: brightness(200%);
     }
 }
+
+.sizes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    justify-content: space-between;
+    p {
+        margin: 0;
+    }
+    div {
+        cursor: pointer;
+    }
+}

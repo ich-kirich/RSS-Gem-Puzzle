@@ -2,48 +2,61 @@ import { StartStop, ClearСlock } from './time.js';
 let isEnable = false
 var audio = new Audio();
 audio.src = './src/music/1.mp3';
+
 export function createPosition(){
-    const puzzle = document.querySelector('.puzzle')
-    const blocks = Array.from(document.querySelectorAll('.block-puzzle'))
-    let countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
-    countBlocks = countBlocks[blocks.length - 1]
-    blocks[countBlocks - 1].style.display = 'none'
-    let matrix = getMatrix(
-        blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
-    ) 
-    setPositionItems(matrix);
+    var matr = [], countBlocks = 0
+    window.onload = function() {
+        let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
+        countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
+        countBlocks = countBlocks[blocks.length - 1]
+        blocks[countBlocks - 1].style.display = 'none'
+        matr = getMatrix(
+            blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
+        ) 
+        setPositionItems(matr);
+    };
 
     document.getElementById('shuffle').addEventListener('click', () =>{
+        let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
+        countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
+        countBlocks = countBlocks[blocks.length - 1]
+        blocks[countBlocks - 1].style.display = 'none'
+        matr = getMatrix(
+            blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
+        ) 
         let moves = document.querySelector('.moves')
         moves.innerHTML = 0
         ClearСlock()
         isEnable = true
         StartStop()
-        let shuffledArray = shuffleArray(matrix.flat())
-        matrix = getMatrix(shuffledArray, countBlocks)
-        setPositionItems(matrix)
+        let shuffledArray = shuffleArray(matr.flat())
+        matr = getMatrix(shuffledArray, countBlocks)
+        setPositionItems(matr)
     });
 
-    puzzle.addEventListener('click', (event) => {
+    document.querySelector('.puzzle').addEventListener('click', (event) => {
         if(isEnable){
             const blockNodes = event.target.closest('.block-puzzle')
             if(!blockNodes){
                 return
             }
+            let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
+            countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
+            countBlocks = countBlocks[blocks.length - 1]
             const blockNumber = Number(blockNodes.dataset.matrixId)
-            const blockCoordinates = findCoordinatesByNumber(blockNumber, matrix)
-            const blankCoords = findCoordinatesByNumber(countBlocks, matrix)
+            const blockCoordinates = findCoordinatesByNumber(blockNumber, matr)
+            const blankCoords = findCoordinatesByNumber(countBlocks, matr)
             const isValid = isValidForSwap(blockCoordinates, blankCoords)
             if(isValid){
                 audio.play()
-                swap(blankCoords, blockCoordinates, matrix, countBlocks)
-                setPositionItems(matrix)
+                swap(blankCoords, blockCoordinates, matr, countBlocks)
+                setPositionItems(matr)
             }
         }
     });
 };
 
-function getMatrix(arr, countBlocks){
+export function getMatrix(arr, countBlocks){
     let matrix = []
     let count = Math.sqrt(countBlocks)
     for(let i = 0; i < count; i++){
@@ -63,7 +76,7 @@ function getMatrix(arr, countBlocks){
     return matrix
 };
 
-function setPositionItems(matrix){
+export function setPositionItems(matrix){
     let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
     for (let y = 0; y < matrix.length; y++){
         for (let x = 0; x < matrix[y].length; x++){
@@ -100,7 +113,6 @@ function findCoordinatesByNumber(number, matrix){
 function isValidForSwap(coords1, coords2){
     const diffX = Math.abs(coords1.x - coords2.x)
     const diffY = Math.abs(coords1.y - coords2.y)
-
     return (diffX === 1 || diffY === 1) && (coords1.x === coords2.x || coords1.y === coords2.y)
 }
 
@@ -144,6 +156,6 @@ function addWonclass(){
             let moves = document.querySelector('.moves')
             moves.innerHTML = 0
             ClearСlock()
-        }, 1000)
+        }, 2000)
     }, 300)
 }
