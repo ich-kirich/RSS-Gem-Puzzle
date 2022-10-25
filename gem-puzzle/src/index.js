@@ -12,6 +12,7 @@ document.body.innerHTML = `
             <div class="panel">
                 <div class="buttons">
                     <button id="shuffle">Shuffle and start</button>
+                    <button id="easy">For easy win</button>
                 </div>
                 <div class="info">
                     <p>Moves: <span class="moves">0</span></p>
@@ -38,7 +39,7 @@ document.body.innerHTML = `
                 <div class="seven">7x7</div>
                 <div class="eight">8x8</div>
             </div>
-            <h2 class="win-text">Вы выиграли!</h2>
+            <h2 class="win-text" id="win-text">Вы выиграли!</h2>
         </div>
     </main>
 `;

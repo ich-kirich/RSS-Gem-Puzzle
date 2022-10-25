@@ -59,12 +59,13 @@ html, body{
 
 .panel {
     margin-bottom: 32px;
-    #shuffle {
+    #shuffle, #easy {
         background-color: #519595;
         border: none;
         border-radius: 5px;
         color: rgb(237, 222, 222);
         padding: 10px;
+        cursor: pointer;
     }
 }
 

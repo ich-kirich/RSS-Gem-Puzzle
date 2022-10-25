@@ -54,6 +54,26 @@ export function createPosition(){
             }
         }
     });
+
+    document.getElementById('easy').addEventListener('click', () =>{
+        isEnable = true
+        ClearСlock()
+        StartStop()
+        let moves = document.querySelector('.moves')
+        moves.innerHTML = 0
+        let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
+        countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
+        countBlocks = countBlocks[blocks.length - 1]
+        blocks[countBlocks - 1].style.display = 'none'
+        matr = getMatrix(
+            blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
+        ) 
+        let last = matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 1]
+        let preLast = matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 2]
+        matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 1] = preLast
+        matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 2] = last
+        setPositionItems(matr);
+    });
 };
 
 export function getMatrix(arr, countBlocks){
