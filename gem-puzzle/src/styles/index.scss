@@ -17,8 +17,9 @@ html, body{
     margin: 0 auto;
     text-align: center;
     user-select: none;
-    .win-text {
+    .win-text, .save-text {
         display: none;
+        text-align: left;
     }
 }
 
@@ -59,7 +60,13 @@ html, body{
 
 .panel {
     margin-bottom: 32px;
-    #shuffle, #easy {
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    #shuffle, #easy, #load, #save, #results, #sound {
+        margin-bottom: 5px;
         background-color: #519595;
         border: none;
         border-radius: 5px;
@@ -88,4 +95,31 @@ html, body{
     div {
         cursor: pointer;
     }
+}
+
+.results-list {
+    display: none;
+    max-width: 400px;
+    background-color: #519595;
+    border: $blackBorder;
+    text-align: center;
+    transition: 0.5s;
+    opacity: 0;
+    p{
+        width: 100%;
+        font-family: 'Courier New', Courier, monospace, sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px
+    }
+    ul{
+        li{
+            text-align: left;
+            width: 100%;
+        }
+    }
+}
+
+.open {
+    opacity: 1;
 }

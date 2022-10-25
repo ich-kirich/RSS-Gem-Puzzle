@@ -1,5 +1,5 @@
 import { setPositionItems, getMatrix } from './index.js';
-import { ClearСlock } from './time.js';
+import { ClearСlock, StartStop } from './time.js';
 
 export function chooseSize(){
     const size3 = document.querySelector('.three')
@@ -65,7 +65,7 @@ export function chooseSize(){
     });
 }
 
-function setPos(){
+export function setPos(){
     var matr = [], countBlocks = 0
     let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
     countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
@@ -75,16 +75,18 @@ function setPos(){
         blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
     ) 
     setPositionItems(matr);
-    ClearСlock()
     let moves = document.querySelector('.moves')
     moves.innerHTML = 0
     let taskElements = document.querySelector('.puzzle').querySelectorAll(`.block-puzzle`)
     for (let task of taskElements) {
         task.draggable = true;
     }
+    ClearСlock()
+    StartStop()
+    ClearСlock()
 }
 
-function createBlocks(size){
+export function createBlocks(size){
     let puzzle = document.querySelector('.puzzle')
     puzzle.innerHTML = ''
     for(let i = 1; i <= size; i++){

@@ -1,5 +1,5 @@
 var base = 60;
-var clocktimer, dateObj, dh, dm, ds, ms;
+var clocktimer, dateObj, dh, dm, ds, ms, temp = 0;
 var readout = '';
 var h = 1,
 m = 1,
@@ -18,6 +18,7 @@ export function ClearСlock() {
     ts = 0;
     ms = 0;
     init = 0;
+    temp = 0;
     readout = '00:00:00';
     let time = document.querySelector('.time')
     time.innerHTML = readout
@@ -25,17 +26,18 @@ export function ClearСlock() {
 
 function StartTime() {
     var cdateObj = new Date();
-    var t = (cdateObj.getTime() - dateObj.getTime()) - (s * 1000);
+    var t = (cdateObj.getTime() - dateObj.getTime()) - (temp * 1000);
     if (t > 999) {
-        s++;
+        temp++
+        s++
     }
     if (s >= (m * base)) {
-        ts = 0;
+        ts = 1
         m++;
     } else {
         ts = parseInt((ms / 100) + s);
         if (ts >= base) {
-        ts = ts - ((m - 1) * base);
+            ts = ts - ((m - 1) * base);
         }
     }
     if (m > (h * base)) {
@@ -59,8 +61,8 @@ function StartTime() {
     }
     if (ts > 0) {
         ds = ts;
-        if (ts < 10) {
-        ds = '0' + ts;
+        if (ds < 10) {
+            ds = '0' + ts;
         }
     } else {
         ds = '00';
@@ -97,7 +99,15 @@ export function StartStop() {
         StartTime();
         init = 1;
     } else {
-        clearTimeout(clocktimer);
         init = 0;
+        ClearСlock();
+        clearTimeout(clocktimer);
     }
+}
+
+export function continueTime(dateInp){
+    s = Number(dateInp[2])
+    m = Number(dateInp[1])
+    h = Number(dateInp[0])
+    clocktimer = setTimeout(StartTime, 1);
 }

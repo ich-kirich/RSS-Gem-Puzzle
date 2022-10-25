@@ -13,6 +13,10 @@ document.body.innerHTML = `
                 <div class="buttons">
                     <button id="shuffle">Shuffle and start</button>
                     <button id="easy">For easy win</button>
+                    <button id="save">Save</button>
+                    <button id="load">Load</button>
+                    <button id="results">Results</button>
+                    <button id="sound">On/off sound</button>
                 </div>
                 <div class="info">
                     <p>Moves: <span class="moves">0</span></p>
@@ -40,6 +44,22 @@ document.body.innerHTML = `
                 <div class="eight">8x8</div>
             </div>
             <h2 class="win-text" id="win-text">Вы выиграли!</h2>
+            <h2 class="save-text" id="save-text">Игра сохранена!</h2>
+        </div>
+        <div class="results-list">
+            <p>Ваши результаты!</p>
+            <ul>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+                <li class="item"></li>
+            </ul>
         </div>
     </main>
 `;
