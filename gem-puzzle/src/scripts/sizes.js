@@ -78,6 +78,10 @@ function setPos(){
     ClearСlock()
     let moves = document.querySelector('.moves')
     moves.innerHTML = 0
+    let taskElements = document.querySelector('.puzzle').querySelectorAll(`.block-puzzle`)
+    for (let task of taskElements) {
+        task.draggable = true;
+    }
 }
 
 function createBlocks(size){

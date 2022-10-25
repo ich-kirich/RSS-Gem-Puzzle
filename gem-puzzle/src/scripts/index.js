@@ -14,6 +14,10 @@ export function createPosition(){
             blocks.map((item) => Number(item.dataset.matrixId)), countBlocks
         ) 
         setPositionItems(matr);
+        let taskElements = document.querySelector('.puzzle').querySelectorAll(`.block-puzzle`)
+        for (let task of taskElements) {
+            task.draggable = true;
+        }
     };
 
     document.getElementById('shuffle').addEventListener('click', () =>{
@@ -73,6 +77,48 @@ export function createPosition(){
         matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 1] = preLast
         matr[Math.sqrt(countBlocks) - 1][matr[Math.sqrt(countBlocks) - 1].length - 2] = last
         setPositionItems(matr);
+    });
+
+    document.querySelector('.puzzle').addEventListener(`dragstart`, (evt) => {
+        if(isEnable){
+            evt.target.classList.add(`selected`);
+        }
+    })
+      
+    document.querySelector('.puzzle').addEventListener(`dragend`, (evt) => {
+        if(isEnable){
+            evt.target.classList.remove(`selected`);
+        }
+    });
+
+    document.querySelector('.puzzle').addEventListener(`dragover`, (evt) => {
+        if(isEnable){
+            evt.preventDefault();
+            const activeElement = document.querySelector(`.selected`);
+            const currentElement = evt.target;
+            const isMoveable = currentElement.classList.contains(`puzzle`);
+            let blockNodes = activeElement
+            if (isMoveable) {
+                if(document.querySelector('.selected')){
+                    activeElement.classList.remove(`selected`);
+                    let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
+                    countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
+                    countBlocks = countBlocks[blocks.length - 1]
+                    const blockNumber = Number(blockNodes.dataset.matrixId)
+                    const blockCoordinates = findCoordinatesByNumber(blockNumber, matr)
+                    const blankCoords = findCoordinatesByNumber(countBlocks, matr)
+                    const isValid = isValidForSwap(blockCoordinates, blankCoords)
+                    if(isValid){
+                        audio.play()
+                        swap(blankCoords, blockCoordinates, matr, countBlocks)
+                        setPositionItems(matr)
+                    }
+                }
+            }
+            else{
+                return;
+            }
+        }
     });
 };
 
@@ -176,6 +222,6 @@ function addWonclass(){
             let moves = document.querySelector('.moves')
             moves.innerHTML = 0
             ClearСlock()
-        }, 2000)
+        }, 1000)
     }, 300)
 }
