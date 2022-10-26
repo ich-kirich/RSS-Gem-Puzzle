@@ -1,11 +1,12 @@
 import { StartStop, ClearСlock, continueTime } from './time.js';
 import { setPos, createBlocks } from './sizes.js';
-var isEnable = false, isSound = true, Load = false, isResult = false, isWin = false
+var isEnable = false, isSound = true, Load = false, isResult = false, isWin = false;
 var audio = new Audio();
 audio.src = './src/music/1.mp3';
+var loadKey = 5000
 
 export function createPosition(){
-    var matr = [], countBlocks = 0, loadKey
+    var matr = [], countBlocks = 0
     window.onload = function() {
         let blocks = Array.from(document.querySelectorAll('.block-puzzle'))
         countBlocks = blocks.map((item) => Number(item.dataset.matrixId))
@@ -86,7 +87,7 @@ export function createPosition(){
 
     document.getElementById('save').addEventListener('click', () =>{
         if(!isResult && isEnable){
-            loadKey = Math.sqrt(countBlocks) * 1000
+            loadKey = 5000
             let moves = document.querySelector('.moves')
             let numMoves = Number(moves.textContent)
             let time = document.querySelector('.time')
@@ -103,11 +104,14 @@ export function createPosition(){
     });
 
     document.getElementById('load').addEventListener('click', () =>{
+        if(localStorage.getItem(loadKey) !== null){
+            Load = true
+        }
         if(Load){
             matr = JSON.parse(localStorage.getItem(loadKey))
             isEnable = true
             let blocks
-            switch(loadKey / 1000){
+            switch(matr.length){
                 case 3:
                     createBlocks(9)
                     blocks = document.querySelectorAll('.block-puzzle')
@@ -184,7 +188,7 @@ export function createPosition(){
     });
 
     document.querySelector('.puzzle').addEventListener(`dragover`, (evt) => {
-        if(isEnable){
+        if(isEnable && !isResult){
             evt.preventDefault();
             const activeElement = document.querySelector(`.selected`);
             const currentElement = evt.target;
@@ -217,7 +221,6 @@ export function createPosition(){
 
     document.getElementById('results').addEventListener('click', () =>{
         if(!isWin){
-            isEnable = false
             isResult = true
             showResults()
         }
@@ -411,7 +414,6 @@ function showResults(){
             res.classList.remove('open')
             setTimeout(() => {
                 res.style.display = 'none'
-                isEnable = true
                 isResult = false
             }, 300)
         }, 4000)

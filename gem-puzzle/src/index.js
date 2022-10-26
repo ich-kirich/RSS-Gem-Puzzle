@@ -43,12 +43,12 @@ document.body.innerHTML = `
                 <div class="seven">7x7</div>
                 <div class="eight">8x8</div>
             </div>
-            <h2 class="win-text" id="win-text">Вы выиграли!</h2>
-            <h2 class="save-text" id="save-text">Игра сохранена!</h2>
+            <h2 class="win-text" id="win-text">You Won!</h2>
+            <h2 class="save-text" id="save-text">Game Saved!</h2>
         </div>
         <div class="results-list">
-            <p>Ваши результаты!</p>
-            <ul>
+            <p>Your Results!</p>
+            <ol>
                 <li class="item"></li>
                 <li class="item"></li>
                 <li class="item"></li>
@@ -59,7 +59,7 @@ document.body.innerHTML = `
                 <li class="item"></li>
                 <li class="item"></li>
                 <li class="item"></li>
-            </ul>
+            </ol>
         </div>
     </main>
 `;
