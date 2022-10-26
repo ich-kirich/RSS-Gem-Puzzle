@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Ignoring directories with node module
-node_modules/
+gem-puzzle/node_modules/
