@@ -1,2 +1,2 @@
-# ich-kirich-JSFE2022Q3
-Private repository for @ich-kirich
+# It is a project from Rs school stage1
+- This is my [result](https://ich-kirich.github.io/RSS-Gem-Puzzle/gem-puzzle/dist/index.html)
